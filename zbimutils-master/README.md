@@ -218,13 +218,16 @@ foreach(var num in roomDict.Keys)
 
 ### 视图切换相关
 
-| 函数名           | 简介           | 备注 |
-| ---------------- | -------------- | ---- |
-| SwitchTo2D       | 切换到二维视图 |      |
-| SwitchTo3D       | 切换到三维视图 |      |
-| CloseCurrentView | 关闭当前视图   |      |
+| 函数名           | 简介                         | 备注 |
+| ---------------- | ---------------------------- | ---- |
+| SwitchTo2D       | 切换到二维视图               |      |
+| SwitchTo3D       | 切换到三维视图               |      |
+| CloseCurrentView | 关闭当前视图                 |      |
+| Get2DWorkView    | 获取构件参照标高对应的2D视图 |      |
 
-#### 视图转换使用范例：
+#### 视图转换使用范例
+
+##### 方法1（容易造成软件崩溃，建议使用方法2）：
 
 ```C#
 View preView = null;
@@ -238,6 +241,22 @@ Utils.SwitchTo2D(doc, uiDoc, ref preView, ref switched, viewName:"1F");
 
 // 关闭当前视图，即切换回原视图
 Utils.CloseCurrentView(uiDoc);
+```
+
+##### 方法2：
+
+```C#
+// 由Element获取对应2D视图，若无法获取，则workview为doc.ActiveView
+workview = Utils.Get2DWorkView(elem, doc);
+// Use workview. For example:
+BoundingBoxXYZ box = elem.get_BoundingBox(workview);
+/* 
+ * 如何替换原视图转换方法：
+ * 1. 删除SwitchTo2D和CloseCurrentView的调用，或其他涉及改变doc.ActiveView值的操作；
+ * 2. 将代码中的doc.ActiveView替换为上述方法获得的workview。
+ * 例如：
+ * elem.get_BoundingBox(doc.ActiveView)替换为elem.get_BoundingBox(workview)
+ */
 ```
 
 
@@ -275,6 +294,39 @@ Utils.PrintLog(log, "H00xxx", doc);
 
 
 ## 更新日志
+
+v230803:
+
+1. 修复GetBuildingHeight部分已知bug;
+
+v230802:
+
+1. GetBuildingLevels已支持获取单独大写字母命名的楼号（如L#）;
+
+v230801:
+
+1. 修复GetBuildingLevels无法获取辅楼（如A1、Y1等）标高的bug;
+
+v230710:
+
+1. 改变IsVerticalPipe中立管的判定方式;
+2. 修复Get2DWorkView中针对部分构件类型无法切换视图的bug;
+
+v230706:
+
+1. 新增Get2DWorkView及其使用范例；
+
+v230704:
+
+1. 修复了GetRoomNetHeight无法处理高度过高的房间的bug；
+
+v230626:
+
+1. GetWindowsInRoom、GetDoorsInRoom中增加planB，用于通过的toRoom/fromRoom/Room属性查找宿主房间；
+
+v230625:
+
+1. 修复了GetRoomNetHeight的bug；
 
 v230615:
 

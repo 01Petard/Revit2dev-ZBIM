@@ -92,7 +92,7 @@
             <param name="buildingBbox"></param>
             <returns>
             返回值单位为英尺ft。
-            当室外地坪和女儿墙找不到或不唯一、机房屋面和屋面不唯一时，楼高记为-1。
+            当室外地坪和女儿墙找不到或不唯一、机房屋面和屋面不唯一时，楼高记为-1ft。
             </returns>
         </member>
         <member name="M:ZBIMUtils.Utils.GetBasementHeight(Autodesk.Revit.DB.Document)">
@@ -160,7 +160,7 @@
             <param name="room"></param>
             <param name="doc"></param>
             <returns>
-            若有错误，返回值为0
+            若有错误，返回值为0，单位为mm
             </returns>
         </member>
         <member name="M:ZBIMUtils.Utils.GetSmokeExhaustArea(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document)">
@@ -416,6 +416,14 @@
             关闭当前视图
             </summary>
             <param name="uiDoc"></param>
+        </member>
+        <member name="M:ZBIMUtils.Utils.Get2DWorkView(Autodesk.Revit.DB.Element,Autodesk.Revit.DB.Document)">
+            <summary>
+            查找指定Element参照标高的对应2D视图，并返回
+            </summary>
+            <param name="elem"></param>
+            <param name="doc"></param>
+            <returns></returns>
         </member>
         <member name="M:ZBIMUtils.Utils.PrintLog(System.String,System.String,Autodesk.Revit.DB.Document,System.String)">
             <summary>
