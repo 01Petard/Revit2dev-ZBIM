@@ -1,0 +1,9 @@
+C:\Users\hzx\source\repos\ZBIM\obj\x86\Debug\ZBIM.csproj.AssemblyReference.cache
+C:\Users\hzx\source\repos\ZBIM\obj\x86\Debug\ZBIM.csproj.CoreCompileInputs.cache
+C:\Users\hzx\source\repos\ZBIM\bin\x86\Debug\ZBIM.dll
+C:\Users\hzx\source\repos\ZBIM\bin\x86\Debug\ZBIM.pdb
+C:\Users\hzx\source\repos\ZBIM\bin\x86\Debug\ZBIMUtils.dll
+C:\Users\hzx\source\repos\ZBIM\bin\x86\Debug\ZBIMUtils.xml
+C:\Users\hzx\source\repos\ZBIM\obj\x86\Debug\ZBIM.csproj.CopyComplete
+C:\Users\hzx\source\repos\ZBIM\obj\x86\Debug\ZBIM.dll
+C:\Users\hzx\source\repos\ZBIM\obj\x86\Debug\ZBIM.pdb

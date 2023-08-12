@@ -1,0 +1,6 @@
+C:\Users\hzx\source\repos\H00018\bin\Debug\H00018.dll
+C:\Users\hzx\source\repos\H00018\bin\Debug\H00018.pdb
+C:\Users\hzx\source\repos\H00018\obj\Debug\H00018.csproj.AssemblyReference.cache
+C:\Users\hzx\source\repos\H00018\obj\Debug\H00018.csproj.CoreCompileInputs.cache
+C:\Users\hzx\source\repos\H00018\obj\Debug\H00018.dll
+C:\Users\hzx\source\repos\H00018\obj\Debug\H00018.pdb

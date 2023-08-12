@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZBIMUtils</name>
+    </assembly>
+    <members>
+        <member name="T:ZBIMUtils.Utils">
+            <summary>
+            Revit二次开发常用的公共方法
+            </summary>
+        </member>
+        <member name="M:ZBIMUtils.Utils.FootToMeter(System.Double)">
+            <summary>
+            单位换算：英尺(ft) => 米(m)
+            </summary>
+            <param name="ft"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.MeterToFoot(System.Double)">
+            <summary>
+            单位换算：米(m) => 英尺(ft)
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.SquareFootToSquarMeter(System.Double)">
+            <summary>
+            单位换算：平方英尺(ft^2) => 平方米(m^2)
+            </summary>
+            <param name="ft2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.SquareMeterToSquarFoot(System.Double)">
+            <summary>
+            单位换算：平方米(m^2) => 平方英尺(ft^2)
+            </summary>
+            <param name="m2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.CubicFootToCubicMeter(System.Double)">
+            <summary>
+            单位换算：立方英尺(ft^3) => 立方米(m^3)
+            </summary>
+            <param name="ft3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.CubicMeterToCubicFoot(System.Double)">
+            <summary>
+            单位换算：立方米(m^3) => 立方英尺(ft^3)
+            </summary>
+            <param name="m3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetBuildingBoundingBoxUV(Autodesk.Revit.DB.Document,Autodesk.Revit.UI.UIDocument,System.Double,System.Boolean)">
+            <summary>
+            获取建筑的楼号和对应的边界框信息。
+            expand用于指定边界框放大的倍率；
+            matchAll设为false时，仅匹配住宅楼(数字楼号)，设为true时，可匹配辅楼(如Y*#或S*#)。
+            </summary>
+            <param name="doc"></param>
+            <param name="uiDoc"></param>
+            <param name="expand"></param>
+            <param name="matchAll"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.InBuilding(Autodesk.Revit.DB.Element,System.String,System.Collections.Generic.Dictionary{System.String,Autodesk.Revit.DB.BoundingBoxUV},Autodesk.Revit.DB.Document,System.Int32@)">
+            <summary>
+            判断元素elem是否在指定建筑中。
+            即判断elem是否在BBoxUV范围内。
+            </summary>
+            <param name="elem"></param>
+            <param name="buildingNum"></param>
+            <param name="buildingBbox"></param>
+            <param name="doc"></param>
+            <param name="errorCode"></param>
+            <returns>
+            在建筑内，返回true；
+            不在建筑内，返回false。
+            errorCode用于返回异常代码，其中：
+            -1表示elem的BBox为空；
+            -2表示楼号buildingNum不存在；
+            0表示正常。
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetBuildingHeight(Autodesk.Revit.DB.Document,Autodesk.Revit.UI.UIDocument,System.Collections.Generic.Dictionary{System.String,Autodesk.Revit.DB.BoundingBoxUV})">
+            <summary>
+            获取建筑的楼号和对应的高度。
+            该方法可与GetBuildingBoundingBoxUV组合使用，buildingBbox用于接收GetBuildingBoundingBoxUV的结果。
+            </summary>
+            <param name="doc"></param>
+            <param name="uiDoc"></param>
+            <param name="buildingBbox"></param>
+            <returns>
+            返回值单位为英尺ft。
+            当室外地坪和女儿墙找不到或不唯一、机房屋面和屋面不唯一时，楼高记为-1。
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetBasementHeight(Autodesk.Revit.DB.Document)">
+            <summary>
+            获取地下室的高度
+            </summary>
+            <param name="doc"></param>
+            <returns>
+            返回值范围为英尺ft
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetNumFromLevelName(System.String)">
+            <summary>
+            通过标高命名获取其相关联的楼号
+            </summary>
+            <param name="levName"></param>
+            <returns>
+            返回包含相关联的楼号的List
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetBuildingLevels(System.Collections.Generic.List{System.String},Autodesk.Revit.DB.Document)">
+            <summary>
+            获取建筑的楼号和对应的标高（地上部分的标高）。
+            buildingNums为包含楼号的列表，如["1", "2"]。
+            </summary>
+            <param name="buildingNums"></param>
+            <param name="doc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetRoomIntersectElement(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document,System.Double,System.Boolean,System.Collections.Generic.List{Autodesk.Revit.DB.ElementId})">
+            <summary>
+            获取房间内的元素。
+            scaleFactor为缩放因子，可将检测范围向房间几何中心收缩。
+            useBoundingBox=true时，使用房间边界框进行检测，若房间为长方体，建议启用，效率更高;
+            searchRange为优化项，用于缩小搜索范围。
+            </summary>
+            <param name="room"></param>
+            <param name="doc"></param>
+            <param name="scaleFactor"></param>
+            <param name="useBoundingBox"></param>
+            <param name="searchRange"></param>
+            <returns>
+            返回一个收集器，可根据各自需求，对其进行进一步过滤。
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.IsEnclosedBalcony(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document)">
+            <summary>
+            判断阳台是否为封闭式
+            </summary>
+            <param name="room"></param>
+            <param name="doc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetRoomNetHeight(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document)">
+            <summary>
+            计算房间的净高
+            </summary>
+            <param name="room"></param>
+            <param name="doc"></param>
+            <returns>
+            若有错误，返回值为0
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetSmokeExhaustArea(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document)">
+            <summary>
+            计算房间内的有效排烟面积(需要考虑房间净高)之和
+            </summary>
+            <param name="room"></param>
+            <param name="doc"></param>
+            <returns>
+            返回有效排烟面积，单位为m^2
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetSmokeControlArea(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document)">
+            <summary>
+            计算房间内的防烟面积之和
+            </summary>
+            <param name="room"></param>
+            <param name="doc"></param>
+            <returns>
+            返回有效防烟面积，单位为m^2
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetRoomNeighbours(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document)">
+            <summary>
+            查找相邻房间
+            </summary>
+            <param name="room"></param>
+            <param name="doc"></param>
+            <returns>
+            返回相邻房间的ID
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetWindowsInRoom(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document,System.Boolean,System.Collections.Generic.List{Autodesk.Revit.DB.ElementId})">
+            <summary>
+            获取房间内的所有窗户。
+            planB=true，启用暴力搜索方法，若默认方法无法获取到房间内的窗户，建议开启此项；
+            searchRange为优化项，传入特定范围内的窗户ID，缩小搜索范围。
+            </summary>     
+            <param name="room"></param>
+            <param name="doc"></param>       
+            <param name="planB"></param>
+            <param name="searchRange"></param>
+            <returns>
+            返回一个包含房间内所有窗户的列表
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetDoorsInRoom(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.Document,System.Boolean,System.Collections.Generic.List{Autodesk.Revit.DB.ElementId})">
+            <summary>
+            获取房间内的所有门。
+            planB=true，启用暴力搜索方法，若默认方法无法获取到房间门，建议开启此项；
+            searchRange为优化项，传入特定范围内的门ID，缩小搜索范围。
+            </summary>     
+            <param name="room"></param>
+            <param name="doc"></param>       
+            <param name="planB"></param>
+            <param name="searchRange"></param>
+            <returns>
+            返回一个包含房间内所有门的列表
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.IsRequiredDoorsFireRating(Autodesk.Revit.DB.FamilyInstance,System.String,Autodesk.Revit.DB.Document)">
+            <summary>
+            判断门的防火等级是否符合要求。
+            设置lowestRating="甲级"，输入甲级防火门，将会输出true；
+            设置lowestRating="乙级"，输入甲级、乙级防火门，将会输出true；
+            设置lowestRating="丙级"，输入甲级、乙级、丙级防火门，将会输出true；
+            </summary>
+            <param name="door"></param>
+            <param name="lowestRating"></param>
+            <param name="doc"></param>
+            <returns>
+            如果大于等于最低防火等级，返回true，反之则返回false
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.IsExternalDoor(Autodesk.Revit.DB.FamilyInstance)">
+            <summary>
+            判断门的一侧是否朝向室外
+            </summary>
+            <param name="door"></param>
+            <returns>
+            若是，则返回true
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.IsExternalWindow(Autodesk.Revit.DB.FamilyInstance,Autodesk.Revit.DB.Document)">
+            <summary>
+            判断是否为外窗
+            </summary>
+            <param name="window"></param>
+            <param name="doc"></param>
+            <returns>
+            若为外窗，则返回true
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.IsOpenableWindow(Autodesk.Revit.DB.FamilyInstance)">
+            <summary>
+            判断是否为可开启窗
+            </summary>
+            <param name="window"></param>
+            <returns>
+            若为可开启窗，则返回true
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.GetPipesBySysName(System.Collections.Generic.List{System.String},Autodesk.Revit.DB.Document)">
+            <summary>
+            按系统名过滤管道。
+            通过typeAbbList传入需要的管道系统简称。
+            </summary>
+            <param name="typeAbbList"></param>
+            <param name="doc"></param>
+            <returns>
+            返回包含所有符合条件的管道的列表。
+            </returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.StartSubString(System.String,System.Int32,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            (截头)截取字符串，从指定位置startIdx开始，出现"结束字符"位置之间的字符串，是否包含开始字符,是否忽略大小写
+            str:待截取字符串
+            startIdx:开始截取的字符的下标（如果你想从头开始截取的话，startIdx应该为0）
+            endStr:结束截取的字符
+            isContains:（默认为false不包含）是否包含结束截取的那个字符，即是否包含“endStr”
+            isIgnoreCase:（默认为true忽略）结束截取的字符是否忽略大小写
+            返回:结束截取后的字符串
+            </summary>
+            <param name="str">待截取字符串</param>
+            <param name="startIdx">开始截取的字符的下标（如果你想从头开始截取的话，startIdx应该为0）</param>
+            <param name="endStr">结束截取的字符</param>
+            <param name="isContains">（默认为false不包含）是否包含结束截取的那个字符，即是否包含“endStr”</param>
+            <param name="isIgnoreCase">（默认为true忽略）结束截取的字符是否忽略大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.SubBetweenString(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            (截中)截取字符串，根据开始字符,结束字符,是否包含开始字符,结束字符(默认为不包括),大小写是否敏感（从0位置开始）
+            str:待截取字符串
+            startStr:开始截取的字符
+            endstr:结束截取的字符
+            isContainsStartStr:（默认为false不包含）是否包含开始截取的那个字符，即是否包含“startStr”
+            isContainsEndStr:（默认为false不包含）是否包含结束截取的那个字符，即是否包含“endstr”
+            isIgnoreCase:（默认为true忽略）结束截取的字符是否忽略大小写
+            返回:结束截取后的字符串
+            </summary>
+            <param name="str">待截取字符串</param>
+            <param name="startStr">开始截取的字符</param>
+            <param name="endstr">结束截取的字符</param>
+            <param name="isContainsStartStr">（默认为false不包含）是否包含开始截取的那个字符，即是否包含“startStr”</param>
+            <param name="isContainsEndStr">（默认为false不包含）是否包含结束截取的那个字符，即是否包含“endstr”</param>
+            <param name="isIgnoreCase">（默认为true忽略）结束截取的字符是否忽略大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.LastSubEndString(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            反向截末——截取字符串，根据开始字符，从右往左开始搜索位置，是否忽略大小写，是否包含开始字符
+            str:待截取字符串
+            endstr:结束截取的字符
+            isContains:（默认为false不包含）是否包含结束截取的那个字符，即是否包含“endStr”
+            isIgnoreCase:（默认为true忽略）结束截取的字符是否忽略大小写
+            返回:结束截取后的字符串
+            </summary>
+            <param name="str">待截取字符串</param>
+            <param name="endStr">结束截取的字符</param>
+            <param name="isContains">（默认为false不包含）是否包含结束截取的那个字符，即是否包含“endStr”</param>
+            <param name="isIgnoreCase">（默认为true忽略）结束截取的字符是否忽略大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZBIMUtils.Utils.SwitchTo2D(Autodesk.Revit.DB.Document,Autodesk.Revit.UI.UIDocument,Autodesk.Revit.DB.View@,System.Boolean@,System.String)">
+            <summary>
+            切换到二维视图。
+            viewName用于限定目标视图名称，例如"1F"表示名称中包含"1F"的视图；
+            preView记录原焦点视图；
+            switched记录是否切换成功。
+            </summary>
+            <param name="doc"></param>
+            <param name="uiDoc"></param>
+            <param name="viewName"></param>
+            <param name="preView"></param>
+            <param name="switched"></param>
+        </member>
+        <member name="M:ZBIMUtils.Utils.SwitchTo3D(Autodesk.Revit.DB.Document,Autodesk.Revit.UI.UIDocument,Autodesk.Revit.DB.View@,System.Boolean@,System.String)">
+            <summary>
+            切换到三维视图。
+            viewName用于限定目标视图名称，例如"1F"表示名称中包含"1F"的视图；
+            preView记录原焦点视图；
+            switched记录是否切换成功。
+            </summary>
+            <param name="doc"></param>
+            <param name="uiDoc"></param>
+            <param name="viewName"></param>
+            <param name="preView"></param>
+            <param name="switched"></param>
+        </member>
+        <member name="M:ZBIMUtils.Utils.CloseCurrentView(Autodesk.Revit.UI.UIDocument)">
+            <summary>
+            关闭当前视图
+            </summary>
+            <param name="uiDoc"></param>
+        </member>
+        <member name="M:ZBIMUtils.Utils.PrintLog(System.String,System.String,Autodesk.Revit.DB.Document,System.String)">
+            <summary>
+            将log文件输出至指定目录下。
+            info中传入log的详细内容；
+            itemNum为条款编号，如H0000x；
+            doc用于自动获取当前模型的编号，如M0000x；
+            path为输出目录，默认为当前用户的桌面
+            </summary>
+            <param name="info">
+            log的详细内容
+            </param>
+            <param name="itemNum">
+            条款编号，如H0000x
+            </param>
+            <param name="doc">
+            当前模型的Document，用于获取模型编号，如M0000x
+            </param>
+            <param name="path">
+            输出目录，默认为当前用户的桌面
+            </param>
+        </member>
+        <member name="M:ZBIMUtils.Utils.ScaleBoundingBoxXYZ(Autodesk.Revit.DB.BoundingBoxXYZ,System.Double)">
+            <summary>
+            向几何中心缩放三维包络框
+            </summary>
+            <param name="box"></param>
+            <param name="scaleFactor"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
