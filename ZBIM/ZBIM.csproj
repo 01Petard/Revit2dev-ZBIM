@@ -71,7 +71,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="H00101.cs" />
+    <Compile Include="FilterStairs.cs" />
+    <Compile Include="H00001.cs" />
+    <Compile Include="H00004.cs" />
+    <Compile Include="H00047.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

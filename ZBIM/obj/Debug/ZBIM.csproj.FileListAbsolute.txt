@@ -13,3 +13,12 @@ C:\Users\hzx\source\repos\ZBIM\obj\Debug\ZBIM.pdb
 C:\Users\hzx\source\repos\ZBIM\bin\Debug\ZBIMUtils.dll
 C:\Users\hzx\source\repos\ZBIM\obj\Debug\ZBIM.csproj.CopyComplete
 C:\Users\hzx\source\repos\ZBIM\bin\Debug\ZBIMUtils.xml
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\bin\Debug\ZBIM.dll
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\bin\Debug\ZBIM.pdb
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\bin\Debug\ZBIMUtils.dll
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\bin\Debug\ZBIMUtils.xml
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\obj\Debug\ZBIM.csproj.AssemblyReference.cache
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\obj\Debug\ZBIM.csproj.CoreCompileInputs.cache
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\obj\Debug\ZBIM.csproj.CopyComplete
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\obj\Debug\ZBIM.dll
+C:\Users\hzx\source\repos\Revit2dev-ZBIM\ZBIM\obj\Debug\ZBIM.pdb
