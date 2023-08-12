@@ -1,0 +1,16 @@
+D:\cvwork\revitwork\UiLable\UiLable\bin\Debug\UiLable.dll
+D:\cvwork\revitwork\UiLable\UiLable\bin\Debug\UiLable.pdb
+D:\cvwork\revitwork\UiLable\UiLable\obj\Debug\UiLable.g.resources
+D:\cvwork\revitwork\UiLable\UiLable\obj\Debug\UiLable.csproj.CoreCompileInputs.cache
+D:\cvwork\revitwork\UiLable\UiLable\obj\Debug\UiLable.dll
+D:\cvwork\revitwork\UiLable\UiLable\obj\Debug\UiLable.pdb
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\bin\Debug\UiLable.dll
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\bin\Debug\UiLable.pdb
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\bin\Debug\ZBIMUtils.dll
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\bin\Debug\ZBIMUtils.xml
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\obj\Debug\UiLable.csproj.AssemblyReference.cache
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\obj\Debug\UiLable.g.resources
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\obj\Debug\UiLable.csproj.CoreCompileInputs.cache
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\obj\Debug\UiLable.csproj.CopyComplete
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\obj\Debug\UiLable.dll
+C:\Users\hzx\source\repos\H00001\UiLable\UiLable\obj\Debug\UiLable.pdb

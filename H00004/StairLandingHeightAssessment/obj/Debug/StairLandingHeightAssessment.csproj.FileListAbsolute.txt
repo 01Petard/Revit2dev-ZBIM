@@ -1,0 +1,5 @@
+D:\cvwork\revitwork\StairHeight\StairHeightSolution\StairLandingHeightAssessment\bin\Debug\StairLandingHeightAssessment.dll
+D:\cvwork\revitwork\StairHeight\StairHeightSolution\StairLandingHeightAssessment\bin\Debug\StairLandingHeightAssessment.pdb
+D:\cvwork\revitwork\StairHeight\StairHeightSolution\StairLandingHeightAssessment\obj\Debug\StairLandingHeightAssessment.csproj.CoreCompileInputs.cache
+D:\cvwork\revitwork\StairHeight\StairHeightSolution\StairLandingHeightAssessment\obj\Debug\StairLandingHeightAssessment.dll
+D:\cvwork\revitwork\StairHeight\StairHeightSolution\StairLandingHeightAssessment\obj\Debug\StairLandingHeightAssessment.pdb
